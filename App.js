@@ -3,15 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider, useTheme } from 'react-native-paper';
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Home from "./src/screens/Home";
+import Favorites from "./src/screens/Favorites";
+import About from "./src/screens/About";
+import Plants from "./src/screens/Plants";
+import History from "./src/screens/History";
 
 const Tab = createMaterialBottomTabNavigator();
-function HomeScreen() {
-  return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Hi :)</Text>
-      </View>
-  );
-}
 
 export default function App() {
     const theme = useTheme({
@@ -34,7 +32,7 @@ export default function App() {
               >
                 <Tab.Screen
                     name="Home"
-                    component={HomeScreen}
+                    component={Home}
                     options={{
                         tabBarLabel: <Text style={styles.tabBarLabel}>Home</Text>,
                         tabBarIcon: ({ color }) => (
@@ -44,7 +42,7 @@ export default function App() {
                 />
                 <Tab.Screen
                     name="History"
-                    component={HomeScreen}
+                    component={History}
                     options={{
                         tabBarLabel: <Text style={styles.tabBarLabel}>History</Text>,
                       tabBarIcon: ({ color }) => (
@@ -54,7 +52,7 @@ export default function App() {
                 />
                 <Tab.Screen
                     name="Favorites"
-                    component={HomeScreen}
+                    component={Favorites}
                     options={{
                         tabBarLabel: <Text style={styles.tabBarLabel}>Favorites</Text>,
                       tabBarIcon: ({ color }) => (
@@ -64,7 +62,7 @@ export default function App() {
                 />
                   <Tab.Screen
                       name="Plants"
-                      component={HomeScreen}
+                      component={Plants}
                       options={{
                           tabBarLabel: <Text style={styles.tabBarLabel}>Plants</Text>,
                           tabBarIcon: ({ color }) => (
@@ -74,7 +72,7 @@ export default function App() {
                   />
                   <Tab.Screen
                     name="About"
-                    component={HomeScreen}
+                    component={About}
                     options={{
                         tabBarLabel: <Text style={styles.tabBarLabel}>About</Text>,
                       tabBarIcon: ({ color }) => (
