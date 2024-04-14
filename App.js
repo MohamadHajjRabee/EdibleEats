@@ -14,6 +14,9 @@ const Tab = createMaterialBottomTabNavigator();
 export default function App() {
     const theme = useTheme({
         colors:{
+            primary:'#003C43',
+            primaryContainer: '#135D66',
+            secondary: '#77B0AA',
             secondaryContainer: '#E3FEF7'
         }
     });
@@ -24,11 +27,10 @@ export default function App() {
           <NavigationContainer>
               <Tab.Navigator
                   initialRouteName="Home"
-                  activeColor="#003C43"
+                  activeColor={theme.colors.primary}
                   inactiveColor="#77B0AA"
-                  barStyle={{ backgroundColor: '#135D66'}}
+                  barStyle={{ backgroundColor: theme.colors.primaryContainer}}
                   shifting={true}
-
               >
                 <Tab.Screen
                     name="Home"
