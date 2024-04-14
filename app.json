@@ -25,6 +25,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to identify edible wild plants for you.",
+          "cameraPermission": "The app accesses your camera to let you take pictures of plants and use it ."
+        }
+      ]
+    ]
   }
 }

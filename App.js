@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from 'react-native';
+import {Text, View, StyleSheet, StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider, useTheme } from 'react-native-paper';
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
@@ -17,13 +17,15 @@ export default function App() {
             primary:'#003C43',
             primaryContainer: '#135D66',
             secondary: '#77B0AA',
-            secondaryContainer: '#E3FEF7'
+            secondaryContainer: '#E3FEF7',
+            background: '#003C43'
         }
     });
 
 
   return (
       <Provider theme={theme}>
+          <StatusBar backgroundColor={theme.colors.primaryContainer}/>
           <NavigationContainer>
               <Tab.Navigator
                   initialRouteName="Home"
