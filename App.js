@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet, StatusBar} from 'react-native';
+import {Text, StyleSheet, StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider, useTheme } from 'react-native-paper';
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
