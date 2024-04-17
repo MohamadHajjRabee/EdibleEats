@@ -1,13 +1,13 @@
-import {Text, StyleSheet, SafeAreaView, View, Image, Pressable} from "react-native";
+import {Text, StyleSheet, SafeAreaView, View, Pressable, ActivityIndicator} from "react-native";
 import {useTheme} from "react-native-paper";
 import * as ImagePicker from 'expo-image-picker';
 import {useEffect, useState} from "react";
 import * as FS from 'expo-file-system';
-import { decodeJpeg } from '@tensorflow/tfjs-react-native';
-import * as tf from '@tensorflow/tfjs';
-export default function Home(){
+
+export default function Home({navigation}){
     const { colors } = useTheme();
     const [image, setImage] = useState('');
+    const [loading, setLoading] = useState(false)
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -15,8 +15,6 @@ export default function Home(){
             quality: 0.3,
 
         });
-
-        console.log(result);
 
         if (!result.canceled) {
             setImage(result.assets[0].uri);
@@ -37,6 +35,7 @@ export default function Home(){
         async function fetchData() {
 
             if (image.length) {
+                setLoading(true)
                 const base64 = await FS.readAsStringAsync(image, { encoding: 'base64' });
                 const formData = new FormData();
                 formData.append('image', base64);
@@ -51,7 +50,8 @@ export default function Home(){
 
                 const resData = await predRes.json();
                 console.log(resData)
-
+                navigation.navigate('Result', resData)
+                setLoading(false)
             }
         }
         fetchData()
@@ -68,7 +68,7 @@ export default function Home(){
                 <Pressable onPress={takeImage} style={[styles.button, {backgroundColor: colors.secondary}]}>
                     <Text>Take a photo</Text>
                 </Pressable>
-                {image && <Image source={{ uri: image }} style={styles.image} />}
+                {loading ? <ActivityIndicator size='large'/> : null}
             </View>
         </SafeAreaView>
     );
