@@ -1,8 +1,9 @@
-import {Text, StyleSheet, SafeAreaView, View, Pressable, ActivityIndicator} from "react-native";
+import {Text, StyleSheet, SafeAreaView, View, Pressable, ActivityIndicator, ImageBackground} from "react-native";
 import {useTheme} from "react-native-paper";
 import * as ImagePicker from 'expo-image-picker';
 import {useEffect, useState} from "react";
 import * as FS from 'expo-file-system';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home({navigation}){
     const { colors } = useTheme();
@@ -25,7 +26,6 @@ export default function Home({navigation}){
             allowsEditing: true,
             quality: 0.3,
         });
-        console.log(result);
         if (!result.canceled) {
             setImage(result.assets[0].uri);
         }
@@ -40,7 +40,7 @@ export default function Home({navigation}){
                 const formData = new FormData();
                 formData.append('image', base64);
 
-                const predRes = await fetch('https://edibleeats-backend.onrender.com/predict', {
+                const predRes = await fetch('https://surrounding-yoko-mohamadhr.koyeb.app/predict', {
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -58,18 +58,28 @@ export default function Home({navigation}){
     }, [image]);
 
     return (
-        <SafeAreaView>
-            <Text style={[styles.homeText, {color: colors.secondaryContainer, backgroundColor: colors.primaryContainer}]}>Home</Text>
-            <View style={[styles.buttonsView, {backgroundColor: colors.secondaryContainer}]}>
-                <Pressable onPress={pickImage} style={[styles.button, {backgroundColor: colors.secondary}]}>
-                    <Text>Choose an image</Text>
-                </Pressable>
-                <Text style={styles.buttonsViewText}>OR</Text>
-                <Pressable onPress={takeImage} style={[styles.button, {backgroundColor: colors.secondary}]}>
-                    <Text>Take a photo</Text>
-                </Pressable>
-                {loading ? <ActivityIndicator size='large'/> : null}
-            </View>
+        <SafeAreaView style={{flex:1}}>
+            <ImageBackground source={require('../../assets/homeBackground.jpg')} resizeMode='cover' style={{flex:1}}>
+                <Text style={[styles.homeText, {color: colors.primary}]}>Edible Eats</Text>
+                <View style={[styles.buttonsView, {flex: 1}]}>
+                    <Text>Input an image to start predicting your plant:</Text>
+                    <View style={{padding: 10, backgroundColor: colors.secondary, borderRadius: 30}}>
+                        <Pressable onPress={pickImage} style={[styles.imageInput, {backgroundColor: colors.secondary, borderColor: colors.primaryContainer}]}>
+                            <Text>Choose an image</Text>
+                        </Pressable>
+                    </View>
+                    <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+                        <View style={{height: 2, width: 100, backgroundColor: colors.primary}}></View>
+                        <Text style={styles.buttonsViewText}>OR</Text>
+                        <View style={{height: 2, width: 100, backgroundColor: colors.primary}}></View>
+                    </View>
+                    <Pressable onPress={takeImage} style={[styles.button, {backgroundColor: colors.secondary}]}>
+                        <Text>Take a photo</Text>
+                    </Pressable>
+                    {loading ? <ActivityIndicator size='large'/> : null}
+
+                </View>
+            </ImageBackground>
         </SafeAreaView>
     );
 }
@@ -81,7 +91,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10
     },
     buttonsView:{
-        height: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -95,9 +104,17 @@ const styles = StyleSheet.create({
         height: 200,
     },
     button:{
-
         padding: 10,
         borderRadius: 5,
+    },
+    imageInput:{
+        height: 300,
+        width: 300,
+        borderRadius: 20,
+        borderStyle: "dashed",
+        borderWidth: 3,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
-
 });

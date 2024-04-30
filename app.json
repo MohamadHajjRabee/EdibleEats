@@ -4,10 +4,10 @@
     "slug": "EdibleEats",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
@@ -28,7 +28,7 @@
       "package": "com.mohamadhr.EdibleEats"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/favicon.png"
     },
     "plugins": [
       [
@@ -38,6 +38,11 @@
           "cameraPermission": "The app accesses your camera to let you take pictures of plants and use it ."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "765d434a-253d-4e35-93a6-53f536fded0b"
+      }
+    }
   }
 }
