@@ -13,8 +13,8 @@ export default function Home({navigation}){
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
+            aspect: [1, 1],
             quality: 0.3,
-
         });
 
         if (!result.canceled) {
@@ -24,6 +24,7 @@ export default function Home({navigation}){
     const takeImage = async () => {
         const result = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
+            aspect: [1, 1],
             quality: 0.3,
         });
         if (!result.canceled) {
