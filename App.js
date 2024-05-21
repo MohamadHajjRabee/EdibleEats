@@ -51,6 +51,7 @@ export default function App() {
               inactiveColor="#77B0AA"
               barStyle={{backgroundColor: theme.colors.primaryContainer}}
               shifting={true}
+              theme={{ colors: { secondaryContainer: theme.colors.secondaryContainer } }}
           >
               <Tab.Screen
                   name="Home"

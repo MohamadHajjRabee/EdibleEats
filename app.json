@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./src/assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
@@ -35,9 +35,10 @@
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos to identify edible wild plants for you.",
-          "cameraPermission": "The app accesses your camera to let you take pictures of plants and use it ."
+          "cameraPermission": "The app accesses your camera to let you take pictures of plants and use it."
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "extra": {
       "eas": {
